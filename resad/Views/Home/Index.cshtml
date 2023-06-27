@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+<div class="all d-flex justify-content-center align-items-end " style="height:100vh;background-image:url(https://cdn.pixabay.com/photo/2014/04/02/17/04/blackboard-307835_1280.png);background-position:center;background-size:cover;background-repeat:no-repeat;">
+    <div class="btns d-flex justify-content-between py-5 " style="width:50%">
+        <a href=" @Url.Action("signout","home")" class="btn btn-primary">Sign Out</a>
+        <a href="@Url.Action("teacher","teacher")" class="btn btn-success">
+            Teacher</a>
+        <a href="@Url.Action("student","student")" class="btn btn-danger">
+                Student</a>
+        <a href="@Url.Action("show","home")" class="btn btn-warning">Show List</a>
+        </div>
+    </div>
+
+

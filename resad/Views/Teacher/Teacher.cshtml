@@ -1,0 +1,43 @@
+﻿@using resad.VM;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model TeacherVm;
+@{
+    ViewData["Title"] = "Teacher";
+}
+@section css{
+    <link rel="stylesheet" href="~/Front/css/teacher.css">
+}
+ <h3>Registration for teacher</h3> <br /><br />
+
+   <form class="all" asp-action="add" method="post">
+    <div class="uname">
+      <label for="uname">Name</label>
+      <input type="text" class="uname" id="uname" aria-describedby="emailHelp" placeholder="Enter name" asp-for="@Model.Teacher.Name">
+    </div>
+
+    <div class="usname">
+        <label for="usname">Surname</label>
+        <input type="text" class="usname" id="usname" aria-describedby="emailHelp" placeholder="Enter surname" asp-for="@Model.Teacher.SurName">
+      </div>
+
+
+  
+
+    <select  id="subject" asp-for="@Model.Teacher.SubjectId">
+
+      <option value="subjects" disabled selected>Fenn secin</option>
+       @foreach (var item in Model.Subjects)
+        {
+            <option value="@item.Id">@item.Name</option>
+
+        }
+    </select>
+
+
+    <div class="btns d-flex justify-content-around">
+      <button type="submit" class="btn btn-success">Create </button>
+        <a href="@Url.Action("showteacherlist","teacher")" class="btn btn-info" style=" border: none; border-radius: 20px; padding: 15px 30px; margin: 65px 30px;">List</a>
+      <a href="@Url.Action("index","home")" class="btn btn-danger">Back</a>
+    </div>
+  </form>
+

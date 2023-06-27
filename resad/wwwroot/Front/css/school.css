@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+}
+
+.all {
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: 50rem;
+  position: relative;
+}
+.all .btns {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+ 
+}/*# sourceMappingURL=school.css.map */

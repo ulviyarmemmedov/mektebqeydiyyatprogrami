@@ -1,0 +1,40 @@
+﻿@using resad.VM;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Teacherlistvm
+<a href="@Url.Action("teacher","teacher")" class="btn btn-info">Back</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Subject</th>
+            @if (ViewBag.rol == "admin")
+            {
+                <th scope="col"></th>
+                <th scope="col"></th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+      @foreach (var item in Model.Teachers.ToList())
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.SurName</td>
+                <td>@item.Subject</td>
+                @if (ViewBag.rol == "admin")
+                {
+                    <td><a href="@Url.Action("update","teacher",new{id=@item.Id})" class="btn btn-info">Update</a></td>
+                    <td><a href="@Url.Action("Deleteteacher","teacher",new{id=@item.Id})" class="btn btn-danger">Delete</a></td>
+                }
+            </tr>
+        }
+       
+    </tbody>
+</table>

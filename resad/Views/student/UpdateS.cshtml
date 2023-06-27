@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewData["Title"] = "UpdateS";
+}
+@using resad.VM;
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model UpdateSvm
+@section css{
+    <link rel="stylesheet" href="~/Front/css/student.css">
+}
+<h3>Registration for student</h3>
+
+<form class="all" asp-action="updates" method="post">
+    <div class="uname">
+        <label for="uname">Name</label>
+        <input type="text" class="uname" id="uname" aria-describedby="emailHelp" placeholder="Enter name" asp-for="@Model.ustudent.Name" value="@Model.Students[0].Name">
+    </div>
+
+    <div class="usname">
+        <label for="usname">Surname</label>
+        <input type="text" class="usname" id="usname" aria-describedby="emailHelp" placeholder="Enter surname" asp-for="@Model.ustudent.SurName" value="@Model.Students[0].SurName">
+    </div>
+
+    <input type="hidden" value="@Model.Students[0].Id"  id="semi" asp-for="@Model.id"/>
+
+
+
+    <select id="subject" asp-for="@Model.ustudent.SubjectId">
+        <option value="@Model.Students[0].SubjectId" disabled selected>@Model.Students[0].Subject</option>
+        @foreach (var item in Model.Subjects)
+        {
+            <option value="@item.Id">@item.Name</option>
+        }
+
+    </select>
+    <select id="yeni" asp-for="@Model.ustudent.TeacherId">
+        <option value="@Model.Students[0].TeacherId" disabled selected>@Model.Students[0].Teacher</option>
+    </select>
+
+
+
+
+    <div class="btns d-flex justify-content-around my-2">
+        <button type="submit" class="btn btn-success"> Create</button>
+        <a href="@Url.Action("slist","student")" class="btn btn-info" style=" border: none;  border-radius: 20px;    padding:  10px 20px; margin: 190px 30px;">Show List</a>
+        <a href="@Url.Action("index","home")" class="btn btn-danger" style=" border: none;  border-radius: 20px;   padding:  10px 20px; margin: 190px 30px;">Back</a>
+    </div>
+</form>
+
+
+@section Scripts{
+
+    <script>
+
+
+        var firstid = $("#yeni").val();
+        $.ajax({
+
+            url: "/student/findteachers",
+            data: { firstid },
+            type: "JSON",
+            success: function (gelen) {
+                console.log(gelen);
+                $("#yeni").html("");
+                for (let i = 0; i < gelen.length; i++) {
+
+                    $("#yeni").append($('<option>', {
+                        value: gelen[i].id,
+                        text: gelen[i].name + " " + gelen[i].surName
+                    }));
+                }
+
+            }
+        })
+
+
+
+
+        $("#subject").change(function () {
+
+            const id = $(this).val();
+            console.log(id);
+            $.ajax({
+
+                url: "/student/Getteacher",
+                data: { id },
+                type: "JSON",
+                success: function (gelen) {
+                    console.log(gelen);
+                    $("#yeni").html("");
+                    for (let i = 0; i < gelen.length; i++) {
+
+                        $("#yeni").append($('<option>', {
+                            value: gelen[i].id,
+                            text: gelen[i].name + " " + gelen[i].surName
+                        }));
+                    }
+
+                }
+            })
+
+
+        })
+
+    </script>
+}

@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@using resad.VM;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model updateTeachervm
+@{
+    ViewData["Title"] = "update";
+}
+@section css{
+    <link rel="stylesheet" href="~/Front/css/teacher.css">
+}
+<h3>Registration for teacher</h3>
+
+<form class="all" asp-action="update" method="post">
+    <div class="uname">
+        <label for="uname">Name</label>
+        <input type="text" class="uname" id="uname" aria-describedby="emailHelp" placeholder="Enter name" value="@Model.gelendatalar[0].Name" asp-for="@Model.Teacher.Name">
+    </div>
+
+    <div class="usname">
+        <label for="usname">Surname</label>
+        <input type="text" class="usname" id="usname" aria-describedby="emailHelp" placeholder="Enter surname" value="@Model.gelendatalar[0].SurName" asp-for="@Model.Teacher.SurName">
+    </div>
+
+
+    <input type="hidden" asp-for="@Model.gelendatalar[0].Id"/>
+
+    <select id="subject" asp-for="@Model.Teacher.SubjectId">
+
+        <option value="@Model.gelendatalar[0].Id">@Model.gelendatalar[0].Subject</option>
+        @foreach (var item in Model.subjects)
+        {
+            <option value="@item.Id">@item.Name</option>
+
+        }
+    </select>
+
+
+    <div class="btns">
+        <button type="submit" class="btn btn-success">update Account</button>
+        <a href="@Url.Action("showteacherlist","teacher")" class="btn btn-danger">Back</a>
+    </div>
+</form>
+

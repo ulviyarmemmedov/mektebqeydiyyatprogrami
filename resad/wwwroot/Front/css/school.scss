@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+}
+
+.all {
+    background-image: url("/img/school.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 50rem;
+    position: relative;
+
+
+    .btns {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: absolute;
+        gap: 0 70px;
+        bottom: 10%;
+        left: 40%;
+    }
+
+
+}
